@@ -4,9 +4,9 @@
     "CUSTOMER" : "NC",
     "TYPE" : "System",
     "MAP" : {
-      "World" : "block",
-      "Korea" : "block",
-      "Area" : "block",
+      "World" : "false",
+      "Korea" : "false",
+      "Area" : "false",
       "Zone" : "block"
     },
     "Alarm" : {
