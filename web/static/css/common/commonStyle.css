@@ -1,0 +1,80 @@
+body {
+    background-color: #f8f9fc;
+}
+
+a {
+    text-decoration: none;
+}
+
+.comment {
+    border-top:dotted 1px #ddd;
+    font-size:0.7em;
+}
+*{
+    box-sizing: border-box;
+}
+.my-float-left{
+    float: left;
+}
+.my-float-right{
+    float: right;
+}
+
+.my-border {
+    border: 1px solid #e3e6f0;
+}
+
+.my-border-2px{
+    border: 2px solid #e3e6f0;
+}
+
+.my-center{
+    margin: 0 auto;
+}
+
+.my-margin-top{
+    margin-top: 20px;
+}
+
+.my-margin-bot{
+    margin-bottom: 20px;
+}
+
+.my-margin-bot-half{
+    margin-bottom: 10px;
+}
+
+.my-margin-top-16{
+    margin-top: 16px;
+}
+
+.btn-border-none {
+    border:0;
+}
+
+.mouse-over-cursor {
+    cursor: pointer;
+}
+
+.my-margin-bot-4{
+    margin-bottom: 4px;
+}
+
+.my-margin-left-2{
+    margin-left: 2px;
+}
+
+.my-margin-right-2{
+    margin-right: 2px;
+}
+
+.my-margin-top-2{
+    margin-top: 2px;
+}
+
+.my-grayscale {
+	filter: grayscale( 100% );
+}
+
+
+

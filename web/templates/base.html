@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="utf-8">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="iaido">
+    <title>Xion Solution</title>
+    <!--xeicon 폰트아이콘-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/bootstrap-3.3.7.css' %}">
+    <link href="{% static 'css/common/sbAdmin/sbAdmin2.min.css' %}" rel="stylesheet">
+    <!-- xion CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/reset.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/commonStyle.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/menu.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/user/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/asset/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/footer.css' %}">
+
+    <!--jquery-->
+    <script src="{% static 'js/common/jquery/ajax.jquery.min.js' %}"></script>
+    <script src="{% static 'js/common/jquery/jquery.als-2.1.js' %}"></script>
+
+    <!--datatable-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/datatables-1.10.12.css' %}">
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+
+    <!-- xion dashboard CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/style.css' %}">
+
+    <!--korea chart (d3 낮은버전)-->
+    <script type="text/javascript" src="{% static 'js/common/d3/d3.v3.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/common/d3/d3v4.js' %}"></script>
+    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/common/topojson.v1.min.js' %}"></script>
+
+</head>
+<body>
+    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'%}
+    {% else %}
+        {% include "navbar.html" %}
+    {% endif %}
+    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
+    {% block content %}
+    {% endblock %}
+    <!-- 기본 템플릿 안에 삽입될 내용 End -->
+    <!-- 푸터 -->
+    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'%}
+    {% else %}
+        {% include "footer.html" %}
+    {% endif %}
+    <!-- 푸터 End -->
+
+</body>
+</html>

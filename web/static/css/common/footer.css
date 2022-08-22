@@ -1,0 +1,11 @@
+.footer-frame {
+    width: 100%;
+    min-height: 52px;
+    margin: 0 auto;
+}
+
+.foot{
+    margin-top: 20px;
+    font-size: 11px;
+    margin-left: 1%;
+}
