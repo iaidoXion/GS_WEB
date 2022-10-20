@@ -41,18 +41,19 @@
 
 </head>
 <body>
-    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/' or request.get_full_path == '/userinfo/'%}
-    {% else %}
+    {% if request.get_full_path == '/dashboard/'%}
         {% include "navbar.html" %}
+    {% else %}
+
     {% endif %}
     <!-- 기본 템플릿 안에 삽입될 내용 Start -->
     {% block content %}
     {% endblock %}
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
     <!-- 푸터 -->
-    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'  or request.get_full_path == '/userinfo/'%}
+    {% if request.get_full_path == '/dashboard/'%}
+            {% include "footer.html" %}
     {% else %}
-        {% include "footer.html" %}
     {% endif %}
     <!-- 푸터 End -->
 

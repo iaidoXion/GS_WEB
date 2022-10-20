@@ -105,3 +105,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/dashboard'
 # 로그아웃시 이동하는 URL
 LOGOUT_REDIRECT_URL = '/'
+
+#Django Session Timeout Code
+SESSION_COOKIE_AGE = 600
+SESSION_SAVE_EVERY_REQUEST = True

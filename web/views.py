@@ -41,7 +41,7 @@ def signup(request):
     return render(request, 'common/signup.html', {'form': form})
 
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def dashboard(request):
     chartData = DashboardDataList()
     MapUse = {"WorldUse" : WorldUse, "KoreaUse" : KoreaUse, "AreaUse" : AreaUse, "ZoneUse" : ZoneUse}
@@ -49,36 +49,36 @@ def dashboard(request):
     #print(chartData)
     return render(request, 'tanium/dashboard.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def assetWeb(request):
     returnData = { 'menuList': menuSettingList }
     return render(request, 'tanium/asset.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def software(request):
     return render(request, 'tanium/software.html', menuSettingList)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def security(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'tanium/security.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def report(request):
     returnData = { 'menuList': menuSettingList }
     return render(request, 'tanium/report.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def setting(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'common/setting.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def userinfo(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'common/change_password.html', returnData)
 
-@login_required(login_url='common:login')
+@login_required(login_url='/login/')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
