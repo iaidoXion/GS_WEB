@@ -1,5 +1,4 @@
 from datetime import datetime, timedelta
-from dateutil.relativedelta import relativedelta
 
 import pandas as pd
 import json
@@ -53,11 +52,6 @@ def alarm_case_detection(data, case) :
     for j in range(len(DLMerge)):
         if case == 'LH':
             if type(DLMerge['Today'][j]) != float and DLMerge['Today'][j] != '[current result unavailable]':
-                #date = datetime.strptime(DLMerge['Today'][j].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
-                #date = str(date).split(' ')[0]
-		#now = datetime.now()
-		#six_month_str = (now - relativedelta(months=6)).strftime("%Y-%m-%d %H:%M:%S")
-		#six_month = datetime.strptime(six_month_str, '%Y-%m-%d %H:%M:%S')
                 if DLMerge['Today'][j] < AlarmStandard :
                     AI = DLMerge['id'][j]
                     IP = DLMerge['ip'][j]
@@ -92,14 +86,12 @@ def network(data, type, case) :
 
     if type == 'group' :
         ADL = []
-        if data.empty != True :
+        if data.empty != True:
             if data['value'][0]:
                 for i in range(len(data['value'])):
                     IPS = data['value'][i].split('.')
                     if len(IPS) == 4 :
                         IP = IPS[0] + '.' + IPS[1] + '.' + IPS[2]
-                    else :
-                        IP = '0.0.0'
                     ADL.append([IP])
         RD = pd.DataFrame(ADL, columns=['group']).groupby(['group']).size().reset_index(name='counts')
         RD['alarmCase'] = AT
@@ -126,9 +118,7 @@ def network(data, type, case) :
             nodeDataList.append({'group' : df.group[i], 'alarmCount': str(df.alarmCount[i]), 'id':df.id[i], 'name':df.name[i], 'alarmCase':df.alarmCase[i], 'point':point})
             linksDataList.append({'source': df.id[i], 'target': 'groupCenter'+str(groupNameCount)})
         RD ={'nodeDataList':nodeDataList, 'linksDataList':linksDataList}
-
     return RD
-
 
 
 

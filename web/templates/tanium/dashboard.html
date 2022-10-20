@@ -54,7 +54,7 @@
             </div>
             <div class="mapChartMenuWorld">
                 <div class="mapChartMenuWrap">
-                    {% if MapUse.WorldUse == 'block' %}
+<!--                    {% if MapUse.WorldUse == 'block' %}
                     <button type="button" class="btn btn-secondary btnWorld">World</button>
                     {%endif%}
                     {% if MapUse.KoreaUse == 'block' %}
@@ -65,7 +65,7 @@
                     {%endif%}
                     {% if MapUse.ZoneUse == 'block' %}
                     <button type="button" class="btn btn-secondary btnGu">Zone</button>
-                    {%endif%}
+		    {%endif%}-->
 <!--                    <div class="expandIconWrap">-->
 <!--                        <div id="expandIconBt1" class="expandIcon mouse-over-cursor">-->
 <!--                            <img src="{% static 'img/dashboard/arrows_expand.png' %}"/>-->
@@ -87,7 +87,7 @@
                     {% if chartData.alarmDataList %}
                     {% for firstData in chartData.alarmDataList.LHDL.firstData %}
                     <a class="expansionWrap mouse-over-cursor" id="zoneBt1">
-                        <li>
+                        <li title="{{firstData.alarmText}}">
                             <div class="mapGps">
                                 <img src="{% static 'img/dashboard/gps.png' %}"/>
                             </div>
@@ -130,7 +130,7 @@
 
                     {% for firstData in chartData.alarmDataList.DUSDL.firstData %}
                     <a class="expansionWrap mouse-over-cursor" id="zoneBt2">
-                        <li>
+                        <li title="{{firstData.alarmText}}">
                             <div class="mapGps">
                                 <img src="{% static 'img/dashboard/gps.png' %}"/>
                             </div>
@@ -173,7 +173,7 @@
 
                     {% for firstData in chartData.alarmDataList.LPCDL.firstData %}
                     <a class="expansionWrap mouse-over-cursor" id="zoneBt3">
-                        <li>
+                        <li title="{{firstData.alarmText}}">
                             <div class="mapGps">
                                 <img src="{% static 'img/dashboard/gps.png' %}"/>
                             </div>
@@ -217,7 +217,7 @@
 
                     {% for firstData in chartData.alarmDataList.EPCDL.firstData %}
                     <a class="expansionWrap mouse-over-cursor" id="zoneBt4">
-                        <li>
+                        <li title="{{firstData.alarmText}}">
                             <div class="mapGps">
                                 <img src="{% static 'img/dashboard/gps.png' %}"/>
                             </div>
@@ -259,7 +259,7 @@
                     </div>
                     {% for firstData in chartData.alarmDataList.RUEDL.firstData %}
                     <a class="expansionWrap mouse-over-cursor" id="zoneBt5">
-                        <li>
+                        <li title="{{firstData.alarmText}}">
                             <div class="mapGps">
                                 <img src="{% static 'img/dashboard/gps.png' %}"/>
                             </div>
@@ -337,7 +337,7 @@
                 <ul class="als-wrapper">
                     {% if chartData.bannerDataList %}
                     {% for bannerData in chartData.bannerDataList %}
-                    <li class="als-item my-border">
+                    <li class="als-item my-border" title="{{bannerData.name}} Count">
                         <div class="conBotTop">{{bannerData.name}} Count</div>
                         <div class="conBotBot">
                             <p class="botConTotalNum">{{bannerData.value}}</p>

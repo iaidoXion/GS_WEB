@@ -1,12 +1,12 @@
 <!-- 네비게이션바 -->
 {% load static %}
 <nav class="navWrap navbar navbar-expand-lg navbar-light bg-white border-bottom">
-    <a class="navbar-brand navCop" href="/">
+    <a class="navbar-brand navCop" href="/dashboard">
         <div>
             {% if Customer == 'NC' %}
             <img src="{% static 'img/common/menu/NC_logo1.png' %}">
             {% else %}
-            X-Factor
+            <img src="{% static 'img/common/menu/XFactor_sg1_c1.png' %}" width="110px">
             {% endif %}
         </div>
     </a>
@@ -42,6 +42,11 @@
                     <p class="navUserTime">
                         Access Time : {{ user.last_login|date:'Y-m-d a H:i' }}
                     </p>
+                <div class="userGuide">
+                    <a class="mouse-over-cursor navUserImg" href="{% static 'pdf/X-Factor_User Guide_v.1.0.pdf' %}" title="X-Factor User Guide 다운로드" download>
+                        <img src="{% static 'img/common/menu/exclamation.png' %}" width="15px" height="15px" />
+                    </a>
+                </div>
                   <div class="userInfo">
                      <a class="mouse-over-cursor navUserImg" href="#">
                             <img class="my-float-left" src="{% static 'img/common/menu/user.png' %}" width="20px" height="20px" />
@@ -71,8 +76,13 @@
 <!--                        <p class="userInfoMidT">계정 관리</p>-->
 <!--                        <p class="userInfoMidB">개인 계정</p>-->
 <!--                    </div>-->
-                    <div class="userInfoBot">
-                        <div>
+                   <div class="userInfoBot">
+                        <div style="margin-bottom:3%;">
+                            <a href="../userinfo" class="logoutWrap mouse-over-cursor">
+                                회원정보
+                            </a>
+                        </div>
+                        <div style="margin-bottom:3%;">
                             <a href="javascript:void(0);" onclick="confirmLogout();" class="logoutWrap mouse-over-cursor">
                                 로그아웃
                             </a>

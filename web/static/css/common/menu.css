@@ -16,13 +16,12 @@
     min-width: 25%;
 }
 
-.navUserInfo{
-
+/*.navUserInfo{
     width: 100%;
     height: 38px;
     margin-top: 10px;
     float: left;
-}
+}*/
 
 .navUserName{
     margin-top: 5px;
@@ -79,7 +78,7 @@
     display:none;
 }
 
-.navUserTime{
+/*.navUserTime{
     width:50%;
     font-size: 12px;
     float: left;
@@ -88,25 +87,27 @@
     margin-top: 3px;
     line-height: 32px;
     text-align: center;
-}
-.userInfo{
+}*/
+
+/*.userInfo{
     float: right;
     display: block;
     width: 6%;
-}
-.navUserImg{
+}*/
+
+/*.navUserImg{
     margin-top: 7px;
     display: block;
     float: left;
     color: #858796;
-}
+}*/
 
 .navbar-brand{
     height: 36px;
 }
 
 .navbar-brand div {
-    width: 135px;
+    width: 80px;
     height: 26px;
 }
 
@@ -193,7 +194,7 @@
 
 .userInfoBot{
     width: 100%;
-    min-height: 50px;
+    min-height: 75px;
     padding-top: 17px;
 }
 
@@ -214,3 +215,30 @@
     padding: 10px;
 }
 
+/* restyle UI */
+
+.navUserInfo{
+    width: 100%;
+    height: 52px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.navUserTime{
+    font-size: 12px;
+}
+
+.userGuide {
+    padding-left: 20px;
+}
+
+.userInfo{
+    padding-left: 5px;
+}
+
+.navUserImg{
+    display: block;
+    color: #858796;
+}

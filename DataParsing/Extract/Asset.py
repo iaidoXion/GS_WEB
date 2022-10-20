@@ -14,7 +14,7 @@ today = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 day = datetime.today().strftime("%Y-%m-%d")
 yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
 twoago = (datetime.today() - timedelta(2)).strftime("%Y-%m-%d")
-fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
+#fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
 
 def past_data() :
     AssetSelectL = []
@@ -40,5 +40,4 @@ def past_data() :
         AssetSelectRS = AssetSelectCur.fetchall()
         for AssetSelectR in AssetSelectRS:
             AssetSelectL.append(AssetSelectR)
-        #print(AssetSelectL)
         return AssetSelectL

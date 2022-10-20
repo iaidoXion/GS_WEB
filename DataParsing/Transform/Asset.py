@@ -30,8 +30,11 @@ def data_frame(data, day, type):
                 itemIndex = 'driveSize'
             if type == 'LH':
                 if d[2] != '[current result unavailable]':
-                    date = datetime.strptime(d[2].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
-                    item = str(date).split(' ')[0]
+                    if ('-' in d[2]):
+                        date = datetime.strptime(d[2].split(' -')[0], "%a, %d %b %Y %H:%M:%S")
+                    else :
+                        date = datetime.strptime(d[2].split(' +')[0], "%a, %d %b %Y %H:%M:%S")
+                item = str(date).split(' ')[0]
                 itemIndex = 'lastLogin'
             if type == 'RUET':
                 item = d[13].split(' ')[0]

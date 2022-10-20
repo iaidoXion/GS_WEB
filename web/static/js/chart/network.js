@@ -95,12 +95,12 @@ console.log(networkData.group[i])
     .style("filter", "url(#drop-shadow)");
 
 // Create a drag handler and append it to the node object instead
-  var drag_handler = d3v4.drag()
-      .on("start", dragstarted)
-      .on("drag", dragged)
-      .on("end", dragended);
+//  var drag_handler = d3v4.drag()
+//      .on("start", dragstarted)
+//      .on("drag", dragged)
+//      .on("end", dragended);
 
-  drag_handler(node);
+//  drag_handler(node);
 
   var labels = node.append("text")
         .text(function(d) { return d.name;})

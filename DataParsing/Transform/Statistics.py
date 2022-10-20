@@ -20,7 +20,7 @@ def banner(data, type) :
         if type == 'past' :
             if data[i][0] == 'asset' or data[i][0] == 'os' :
                 if data[i][1] == 'all' :
-                    name = 'Asset Total'
+                    name = 'Asset Online'
                 else :
                     name = data[i][1]
             elif data[i][0] == 'drive_size' :
@@ -31,6 +31,8 @@ def banner(data, type) :
                 name = 'Listen Port No Change'
             elif data[i][0] == 'established_port_count' :
                 name = 'Established Port No Change'
+            elif data[i][0] == 'ram_use_size' :
+                name = 'RAM Usage Exceeded'
             DFDL.append([name, data[i][2]])
         elif type == 'today' :
             for j in range(len(data[i]['name'])) :
@@ -45,7 +47,7 @@ def banner(data, type) :
                 DFDL.append([name, value])
 
     RD = pd.DataFrame(DFDL, columns=DFCNM)
-    #print(RD)
+
     return RD
 
 def line_chart(data) :
@@ -74,14 +76,19 @@ def alarm(data, type, case) :
         AT = alarmCaseFifth
     if type == 'list' :
         ALDL = []
-        if data['name'][0] :
-            FDL = [{'id' :data['name'][0], 'ip':data['value'][0], 'alarmText':data['alarmText'][0]}]
-            for i in range(len(data['name'])) :
-                ALDL.append({'id' : data['name'][i], 'ip': data['value'][i], 'alarmText':data['alarmText'][i]})
+        if (data.empty != True):
+            if data['name'][0] :
+                FDL = [{'id' :data['name'][0], 'ip':data['value'][0], 'alarmText':data['alarmText'][0]}]
+                for i in range(len(data['name'])) :
+                    ALDL.append({'id' : data['name'][i], 'ip': data['value'][i], 'alarmText':data['alarmText'][i]})
+            else :
+                FDL =[{'id' :'-', 'ip':'-', 'alarmText':AT}]
+                ALDL =[{'id' :'-', 'ip':'-', 'alarmText':AT}]
+            RD = {'firstData': FDL, 'dataList' : ALDL}
         else :
             FDL =[{'id' :'-', 'ip':'-', 'alarmText':AT}]
             ALDL =[{'id' :'-', 'ip':'-', 'alarmText':AT}]
-        RD = {'firstData': FDL, 'dataList' : ALDL}
+            RD = {'firstData': FDL, 'dataList' : ALDL}
     elif type == 'network' :
         DL = []
         DC = ['group','alarmCount','id','name','alarmCase']
@@ -90,6 +97,7 @@ def alarm(data, type, case) :
             groupNameCount = groupNameCountSplit[0]+groupNameCountSplit[1]+groupNameCountSplit[2]
             DL.append([data.group[i], data.counts[i], 'group'+str(groupNameCount)+case, case, AT])
         RD=[DC,DL]
+    
     return RD
 
 def chart_data(data, type) :
@@ -106,8 +114,9 @@ def chart_data(data, type) :
             if type == 'Bar' or type == 'Pie':
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i]})
             elif type == 'Banner' :
-                ChartDataList.append({"name": data['name'][i], "value": data['value_y'][i], "roc" : data['ROC'][i]})
+                ChartDataList.append({"name": data['name'][i], "value": int(data['value_y'][i]), "roc" : data['ROC'][i]})
             elif type == 'Line' :
                 ChartDataList.append({"name": data['name'][i], "value": data['value'][i], "date" : data['date'][i]})
+
     RD = ChartDataList
     return RD

@@ -1,7 +1,7 @@
 import pandas as pd
 
 from api.Call.Auth import SessionKey
-from api.Call.Asset import data as AssetAPI
+#from api.Call.Asset import data as AssetAPI
 from api.Call.Sensor import data as SensorAPI
 from DataParsing.Extract.Asset import past_data as EAY
 from DataParsing.Extract.Statistics import Yesterday as ESY, FiveDay as ESF
@@ -24,10 +24,11 @@ def DashboardData() :
 
     if core == 'Tanium' :
         SK = SessionKey()                                                       # API Sesstion KEY Call
-        assetData = AssetAPI(SK)                                                # API Asset(Now) Data Call
+        #assetData = AssetAPI(SK)                                                # API Asset(Now) Data Call
+        #print(assetData)
         EAYL = EAY()                                                            # DB Asset(yesterday) Data Select
         sensorData = SensorAPI(SK)                                              # API Sensor(Now) Data Call
-        assetAPI = assetData['dataList']
+        #assetAPI = assetData['dataList']
         sensorAPI = sensorData['dataList']
         if Customer == 'NC' or 'Xfactor' :
             if ProjectType == 'System' :
@@ -56,9 +57,7 @@ def DashboardData() :
                 # RAM USE Size Statistics
                 ## Today compare Count (now sensor API Data & yesterday Asset Table Data)
                 TRUSDLT = TACD(sensorAPI, "today", "RUET")
-                #print(TRUSDLT)
                 TRUSDLU = TACD(sensorAPI, "today", "RUEU")
-                #print(TRUSDLU)
                 #TRUSDLY = TACD(EAYL, "yesterday", "ramUseSize", '')
                 RUSCTDL = [TRUSDLT, TRUSDLU]
                 SRUSDLT = SACD(RUSCTDL, "RUE", "count")
@@ -83,7 +82,7 @@ def DashboardData() :
                 TSDLY = TSBA(ESDLY, 'past')                                                            # yesterday Statistics Data Transform
                 ## Today Statistics Data Transform
                 ## Today Asset Total Count Calculation
-                ATCDL = {'name': ['Asset Total'], 'value': [sum(SAIDL['value'])]}
+                ATCDL = {'name': ['Asset Online'], 'value': [sum(SAIDL['value'])]}
                 TSDL = ATCDL, SAIDL, SOIDL, SDUSDLT, SNLHDLT, LPCDLT, EPCDLT                        # today Statistics Data List
                 TSDLT = TSBA(TSDL, 'today')
                 ## Banner ROC Calculation
@@ -95,7 +94,7 @@ def DashboardData() :
                 ## Past & Today Data Combination Transform
                 AIFD = [ESDLF, SAIDL]
                 ESAIDL = TSLC(AIFD)
-
+                
 
                 # Alarm
                 ## Alarm Statistics(Alarm case detection)
@@ -104,16 +103,22 @@ def DashboardData() :
                 SRUSADL = ASSACD(RUSCTDL, 'RUE')
                 SLPCADL = ASSACD(LPCCTDL, 'LPC')
                 SEPCADL = ASSACD(EPCCTDL, 'EPC')
-
+                
                 ## List
                 ### Transform by case
                 TDUSALDL = TSAL(SDUSADL, 'list', 'DUS')
-                TLHALDL = TSAL(SLHADL, 'list', 'LH')
+                #print(SLHADL)
+                TLHALDL = TSAL(SLHADL, 'list', 'LH') 
+                #print("test1")
                 TRUSALDL = TSAL(SRUSADL, 'list', 'RUE')
+                #print("test2")
+                #print(TRUSALDL)
                 TLPCALDL = TSAL(SLPCADL, 'list', 'LPC')
                 TEPCALDL = TSAL(SEPCADL, 'list', 'EPC')
+                #ALD = ["","","","",""]
+                #print("------------------------------")
                 ALD = [TDUSALDL, TLHALDL, TRUSALDL, TLPCALDL, TEPCALDL]
-
+                #print(ALD)
                 ## Network
                 ### Data Grouping(Statistics) by case
                 SDUSND = ASSN(SDUSADL, 'group', 'DUS')
@@ -147,12 +152,12 @@ def DashboardData() :
                 BNDL = TSCD(SBNDL, "Banner")
                 # Alarm List
                 ALDL = TSCD(ALD, "alarmList")
-
+                
             elif ProjectType == 'Service':
                 print()
     elif core == 'Zabbix':
         print()
-
+    
     RD = {
         "barChartData": BDL,
         "lineChartData" : LDL,
@@ -161,7 +166,7 @@ def DashboardData() :
         "alarmListData" : ALDL[0],
         "AssociationDataList" : NCDL
     }
-
+    
     return RD
 
 

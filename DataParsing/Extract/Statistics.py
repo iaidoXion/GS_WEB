@@ -15,7 +15,7 @@ today = datetime.today().strftime("%Y-%m-%d %H:%M:%S")
 day = datetime.today().strftime("%Y-%m-%d")
 yesterday = (datetime.today() - timedelta(1)).strftime("%Y-%m-%d")
 twoago = (datetime.today() - timedelta(2)).strftime("%Y-%m-%d")
-fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
+#fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
 
 
 
@@ -54,7 +54,6 @@ def Yesterday():
                 ADL = json.loads(ADF.read())
             AssetSelectL=ADL
             """
-            # print(DataLoadingType)
         return StatisticsSelectL
     except:
         if DataLoadingType == 'DB':
@@ -64,6 +63,7 @@ def Yesterday():
 
 
 def FiveDay(type):
+    fiveDay = (datetime.today() - timedelta(5)).strftime("%Y-%m-%d")
     try:
         StatisticsSelectL = []
         if DataLoadingType == 'DB':
@@ -98,8 +98,6 @@ def FiveDay(type):
                 ADL = json.loads(ADF.read())
             AssetSelectL=ADL
             """
-            print(DataLoadingType)
-        # print(StatisticsSelectL)
         return StatisticsSelectL
     except:
         if DataLoadingType == 'DB':

@@ -1,4 +1,22 @@
 function piechart(pieChartData) {
+var tooltip = d3
+                    .select('#pieChart')
+                    .append('div')
+                    .attr('class', 'd3-tooltip')
+                    .style('position', 'absolute')
+                    .style('z-index', '999')
+                    .style('visibility', 'hidden')
+                    .style('padding', '10px')
+                    .style('background', 'rgba(0,0,0,0.6)')
+                    .style('border-radius', '4px')
+                    .style('color', '#fff')
+                    .style('font-size', '12px')
+                    .text('a simple tooltip');
+        var heightPad = 20;
+        var widthPad = 22;
+        var marginTip = -222;
+
+
     const width = 200;
     const height = 170;
     const color = ["#e08a0b","#f5a631","#f8c477","#f2cd96"];
@@ -38,9 +56,9 @@ function piechart(pieChartData) {
       // 다른 그래프와 다르게 .data 라는 객체가 추가되어 있는데, 위에 arcs 변수를 선언할때
       // .pie(data)가 {data, value, index, startAngle, endAngle, padAngle} 의 값을 가지고 있습니다.
       .attr('stroke', 'white')
-      .attr('d', arc)
-      .append('title')
-      .text(d => `${d.data.value}`);
+      .attr('d', arc);
+//      .append('title')
+//      .text(d => `${d.data.value}`);
       // 각각 페스의 자식으로 title의 엘리먼트에 텍스트로 출력합니다.
       // 실제로 뷰에 출력되지는 않지만 시멘틱하게 각각의 요소의 설명 문자열을 제공합니다.
 
@@ -58,26 +76,28 @@ function piechart(pieChartData) {
       .attr('y', '-0.2em')
       .text(d => d.data.name);
 
-
-/*    text.filter(d => (d.endAngle - d.startAngle > 0.25)).append('tspan')
-      .attr('x', 0)
-      .attr('y', '0.7em')
-      .attr('fill-opacity', 0.7)
-      .text(d => d.data.value);*/
-      // 해당 데이터의 수치값을 투명도를 주어 출력합니다. ex. 1000
-
     svg.selectAll("path")
-      .on("mouseover", function(d, i){
+      .on("mousemove", function(d, i){
         d3.select(this)
             .style("cursor", "pointer")
             .attr('d',function(d){return d3.svg.arc().innerRadius(35)
-            .outerRadius((Math.min(width, height) / 2))(d)});
+            .outerRadius((Math.min(width, height) / 2))(d)})
+            tooltip
+                    .html(
+                      `<div>${d.value}</div>`
+                    )
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY) + "px")
+                    .style('visibility', 'visible');
 
       })
+
       .on("mouseout", function(d) {
         d3.select(this)
-            .attr('d',function(d){return d3.svg.arc().innerRadius(30).outerRadius((Math.min(width, height) / 2.3))(d)});
+            .attr('d',function(d){return d3.svg.arc().innerRadius(30).outerRadius((Math.min(width, height) / 2.3))(d)})
+            tooltip.style('visibility', 'hidden');
       });
+
 
 
     svg.node();

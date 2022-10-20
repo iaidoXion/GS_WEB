@@ -26,7 +26,7 @@ function barChart(barChartData) {
 
         var heightPad = 20;
         var widthPad = 22;
-        var marginTip = -21;
+        var marginTip = -44;
 
         var svg = d3.select("#barChart")
             .append("svg")
@@ -57,28 +57,24 @@ function barChart(barChartData) {
             .on("mouseover", function(d, i) {
                d3.select(this)
                  .style("cursor", "pointer");
-                 /*tooltip
+                 tooltip
                     .html(
                       `<div>${d.value}</div>`
                     )
                     .style("margin-top", (d3.select(this).attr("y")-heightPad + "px"))
                     .style("margin-left", (d3.select(this).attr("x")-marginTip + "px"))
-                    .style('visibility', 'visible');*/
-            });
-            /*
+                    .style('visibility', 'visible');
+            })
+            
             .on("mouseout", function(d) {
                 tooltip.style('visibility', 'hidden');
-            });*/
-
-          rect.append("title")
-              .text(function(d) {
-                return d.value;
-              });
+            });
 
         // Y axis
         var yAxis = d3.svg.axis()
             .scale(yScale)
-            .orient("left");
+            .orient("left")
+            .ticks(d3.max(barChartData, function (d) { return d.value; }));
 
         svg.append("g")
             .attr("class", "axis")

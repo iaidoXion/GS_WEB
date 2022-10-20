@@ -10,7 +10,7 @@
     <meta name="author" content="iaido">
     <title>Xion Solution</title>
     <!--xeicon 폰트아이콘-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="{% static 'css/common/font/xeicon.min.css' %}">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/bootstrap-3.3.7.css' %}">
     <link href="{% static 'css/common/sbAdmin/sbAdmin2.min.css' %}" rel="stylesheet">
@@ -28,7 +28,7 @@
 
     <!--datatable-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/datatables-1.10.12.css' %}">
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/common/jquery/jquery.dataTables.min.js' %}"></script>
 
     <!-- xion dashboard CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/style.css' %}">
@@ -36,12 +36,12 @@
     <!--korea chart (d3 낮은버전)-->
     <script type="text/javascript" src="{% static 'js/common/d3/d3.v3.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/common/d3/d3v4.js' %}"></script>
-    <script src="https://d3js.org/queue.v1.min.js"></script>
+    <script src="{% static 'js/common/d3/queue.v1.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/common/topojson.v1.min.js' %}"></script>
 
 </head>
 <body>
-    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'%}
+    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/' or request.get_full_path == '/userinfo/'%}
     {% else %}
         {% include "navbar.html" %}
     {% endif %}
@@ -50,7 +50,7 @@
     {% endblock %}
     <!-- 기본 템플릿 안에 삽입될 내용 End -->
     <!-- 푸터 -->
-    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'%}
+    {% if request.get_full_path == '/' or request.get_full_path == '/signup/' or  request.get_full_path == '/login/'  or request.get_full_path == '/userinfo/'%}
     {% else %}
         {% include "footer.html" %}
     {% endif %}

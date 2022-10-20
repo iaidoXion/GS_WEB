@@ -1,45 +1,45 @@
 {
   "PROJECT" : {
     "CORE" : "Tanium",
-    "CUSTOMER" : "NC",
+    "CUSTOMER" : "X-Factor",
     "TYPE" : "System",
     "MAP" : {
-      "World" : "false",
-      "Korea" : "false",
-      "Area" : "false",
+      "World" : "None",
+      "Korea" : "None",
+      "Area" : "None",
       "Zone" : "block"
     },
     "Alarm" : {
-      "StandardDate" : "2022-07-11",
-      "RamUsage" : 60,
+      "StandardDate" : "2022-09-12",
+      "RamUsage" : 70,
       "Case" : {
         "First" : "Drive Size No Change",
         "Second" : "No Login History",
         "Third" : "RAM Usage Exceeded",
-        "Fourth" : "Listen Port No Change",
-        "Fifth" : "Established Port No Change"
+        "Fourth" : "Listen Port Count No Change",
+        "Fifth" : "Established Port Count No Change"
       }
     }
   },
    "API" : {
-    "apiUrl" : "https://192.168.5.100",
-    "Authorization" : "Basic QWRtaW5pc3RyYXRvcjp4aW9uMTIzIQ==",
+    "apiUrl" : "https://192.168.10.100",
     "ContentType" : "application/json",
      "PATH" : {
-       "SesstionKey" : "/auth",
-       "Asset" : "/plugin/products/asset/v1/assets",
+       "SesstionKey" : "/api/v2/session/login",
        "Sensor" : "/api/v2/result_data/saved_question/",
        "Questions" : {
          "Saved" : "/api/v2/saved_questions"
        }
      },
-     "SensorID": "1875"
+     "username" : "admin",
+     "password" : "Qhdkscjfwj#*12",
+     "SensorID": "387"
   },
   "MODULE" : {
     "DataLoadingType" : "DB"
   },
   "DB" : {
-    "DBHost" : "192.168.5.160",
+    "DBHost" : "192.168.10.50",
     "DBName" : "postgres",
     "DBUser" : "postgres",
     "DBPwd" : "psql",
