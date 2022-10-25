@@ -1,6 +1,7 @@
+import django
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import update_session_auth_hash
-from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth.forms import PasswordChangeForm, AuthenticationForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
@@ -35,13 +36,14 @@ def signup(request):
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)  # 사용자 인증
             login(request, user)  # 로그인
-            return redirect('index')
+            messages.success(request, '회원가입이 완료되었습니다.')
+            return redirect('login')
     else:
         form = UserForm()
     return render(request, 'common/signup.html', {'form': form})
 
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def dashboard(request):
     chartData = DashboardDataList()
     MapUse = {"WorldUse" : WorldUse, "KoreaUse" : KoreaUse, "AreaUse" : AreaUse, "ZoneUse" : ZoneUse}
@@ -49,44 +51,62 @@ def dashboard(request):
     #print(chartData)
     return render(request, 'tanium/dashboard.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def assetWeb(request):
     returnData = { 'menuList': menuSettingList }
     return render(request, 'tanium/asset.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def software(request):
     return render(request, 'tanium/software.html', menuSettingList)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def security(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'tanium/security.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def report(request):
     returnData = { 'menuList': menuSettingList }
     return render(request, 'tanium/report.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def setting(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'common/setting.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def userinfo(request):
     returnData = {'menuList': menuSettingList}
     return render(request, 'common/change_password.html', returnData)
 
-@login_required(login_url='/login/')
+@login_required(login_url='/')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             user = form.save()
             update_session_auth_hash(request, user)  # Important!
-            messages.success(request, 'Your password was successfully updated.')
+            messages.success(request, '비밀번호가 성공적으로 변경되었습니다.')
             return redirect('login')
     else:
         form = PasswordChangeForm(request.user)
     return render(request, 'common/change_password.html', {'form': form, 'menuList': menuSettingList})
+
+# @login_required(login_url='/login/')
+# def logout(request):
+#     if request.session['user'] : #로그인 중이라면
+#         del(request.session['user'])
+#
+#     return redirect('/') #홈으로
+def csrf_failure(request, reason=""):
+    messages.success(request, '잘못된 접근입니다.')
+    return render(request, 'common/login.html')
+
+def custom_page_not_found(request):
+    return django.views.defaults.page_not_found(request, None)
+
+def custom_server_error(request):
+    return django.views.defaults.server_error(request)
+
+

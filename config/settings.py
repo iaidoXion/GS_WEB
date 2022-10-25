@@ -5,7 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-ikr_y4r*3xskgtwdp5y^p)oqvbs0!&%g4(wqj@=81*uc!^z$ac'
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -86,7 +86,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ko-kr'
 
 TIME_ZONE = 'Asia/Seoul'
 
@@ -120,7 +120,7 @@ AUTHENTICATION_BACKENDS = [
 # 로그인 시도 실패시 lock
 AXES_FAILURE_LIMIT = 5
 AXES_COOLOFF_TIME = timedelta(minutes=10)
+AXES_ONLY_USER_FAILURES = True
 
 # 로그인 실패시 CSRF 에러 처리
-CSRF_COOKIE_SECURE = None
-
+CSRF_FAILURE_VIEW = 'web.views.csrf_failure'

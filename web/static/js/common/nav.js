@@ -1,8 +1,9 @@
 function confirmLogout() {
-    if( confirm("Are you sure you want to log out?") ) {
+    if( confirm("정말 로그아웃 하시겠습니까?") ) {
         location.href = "/logout";
     }
 }
+
 
 
 //클릭시 유저정보 팝업
