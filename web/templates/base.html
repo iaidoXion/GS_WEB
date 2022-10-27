@@ -29,6 +29,22 @@
     <!--datatable-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/datatables-1.10.12.css' %}">
     <script type="text/javascript" src="{% static 'js/common/jquery/jquery.dataTables.min.js' %}"></script>
+    <script>
+            $(document).ready(function(){
+
+            window.onpageshow = function(event) {
+                if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+
+                    alert("잘못된 접근입니다.");
+                    location.href="/";
+
+                }
+            }
+        });
+        window.history.forward(); function noBack(){
+  window.history.forward();
+}
+</script>
 
     <!-- xion dashboard CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'css/dashboard/style.css' %}">
@@ -40,7 +56,7 @@
     <script type="text/javascript" src="{% static 'js/common/topojson.v1.min.js' %}"></script>
 
 </head>
-<body>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
     {% if request.get_full_path == '/dashboard/'%}
         {% include "navbar.html" %}
     {% else %}

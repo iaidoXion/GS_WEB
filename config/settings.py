@@ -121,6 +121,22 @@ AUTHENTICATION_BACKENDS = [
 AXES_FAILURE_LIMIT = 5
 AXES_COOLOFF_TIME = timedelta(minutes=10)
 AXES_ONLY_USER_FAILURES = True
+AXES_LOCKOUT_CALLABLE = "web.views.lockout"
 
 # 로그인 실패시 CSRF 에러 처리
 CSRF_FAILURE_VIEW = 'web.views.csrf_failure'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
