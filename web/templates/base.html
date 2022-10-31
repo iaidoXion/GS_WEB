@@ -30,20 +30,17 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/datatables-1.10.12.css' %}">
     <script type="text/javascript" src="{% static 'js/common/jquery/jquery.dataTables.min.js' %}"></script>
     <script>
-            $(document).ready(function(){
-
-            window.onpageshow = function(event) {
-                if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
-
-                    alert("잘못된 접근입니다.");
-                    location.href="/";
-
-                }
+    $(document).ready(function(){
+        window.onpageshow = function(event) {
+            if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+                alert("잘못된 접근입니다.");
+                location.href="/";
             }
-        });
-        window.history.forward(); function noBack(){
-  window.history.forward();
-}
+        }
+    });
+    window.history.forward(); function noBack(){
+        window.history.forward();
+    }
 </script>
 
     <!-- xion dashboard CSS -->
@@ -57,21 +54,21 @@
 
 </head>
 <body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
-    {% if request.get_full_path == '/dashboard/'%}
-        {% include "navbar.html" %}
-    {% else %}
+{% if request.get_full_path == '/dashboard/'%}
+{% include "navbar.html" %}
+{% else %}
 
-    {% endif %}
-    <!-- 기본 템플릿 안에 삽입될 내용 Start -->
-    {% block content %}
-    {% endblock %}
-    <!-- 기본 템플릿 안에 삽입될 내용 End -->
-    <!-- 푸터 -->
-    {% if request.get_full_path == '/dashboard/'%}
-            {% include "footer.html" %}
-    {% else %}
-    {% endif %}
-    <!-- 푸터 End -->
+{% endif %}
+<!-- 기본 템플릿 안에 삽입될 내용 Start -->
+{% block content %}
+{% endblock %}
+<!-- 기본 템플릿 안에 삽입될 내용 End -->
+<!-- 푸터 -->
+{% if request.get_full_path == '/dashboard/'%}
+{% include "footer.html" %}
+{% else %}
+{% endif %}
+<!-- 푸터 End -->
 
 </body>
 </html>

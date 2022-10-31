@@ -20,4 +20,5 @@ urlpatterns = [
     path('setting/', views.setting, name='setting'),
     path('change_password/', views.change_password, name='change_password'),
     path('userinfo/', views.change_password, name='change_password'),
+    path('lockout/', views.lock_out, name='lock_out')
 ]

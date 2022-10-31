@@ -16,8 +16,8 @@
         "First" : "Drive Size No Change",
         "Second" : "No Login History",
         "Third" : "RAM Usage Exceeded",
-        "Fourth" : "Listen Port Count No Change",
-        "Fifth" : "Established Port Count No Change"
+        "Fourth" : "Listen Port No Change",
+        "Fifth" : "Established Port No Change"
       }
     }
   },

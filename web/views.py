@@ -109,8 +109,9 @@ def custom_page_not_found(request):
 def custom_server_error(request):
     return django.views.defaults.server_error(request)
 
-def lockout(request, credentials, *args, **kwargs):
-    messages.success(request, '로그인 실패 횟수가 5회를 초과하여 10분간 로그인이 제한됩니다.')
-    return redirect('login')
+# def lockout(request, credentials, *args, **kwargs):
+#     messages.success(request, '로그인 실패 횟수가 5회를 초과하여 10분간 로그인이 제한됩니다.')
+#     return redirect('login')
 
-
+def lock_out(request):
+    return render(request, 'lockout.html')

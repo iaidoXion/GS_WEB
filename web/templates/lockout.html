@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xion Solution</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/common/bootstrap/bootstrap-3.3.7.css' %}">
+    <script src="{% static 'js/common/jquery/ajax.jquery.min.js' %}"></script>
+</head>
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+<div class="login-form" style="margin: 0 auto;">
+    <br><br><br><br><br>
+    <div class="form-group">
+        <h3 class="text-center">로그인 실패 횟수가 5회를 초과하여 <span id="time">10:00</span>분간 로그인이 제한됩니다.</h3><br>
+    </div>
+    <div class="form-group" style="margin: 0 auto;">
+    <a href="/" class="btn btn-secondary" style="margin: 0 auto; display:block; width: 200px; height: 31px;">로그인 페이지로 이동</a>
+    </div>
+</div>
+<script>
+$(document).ready(function(){
+    window.onpageshow = function(event) {
+        if ( event.persisted || (window.performance && window.performance.navigation.type == 2)) {
+            alert("잘못된 접근입니다.");
+            location.href="/";
+        }
+    }
+});
+window.history.forward(); function noBack(){
+    window.history.forward();
+}
+function startTimer(duration, display) {
+    var timer = duration, minutes, seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        display.textContent = minutes + ":" + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 10,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};
+
+
+
+
+
+window.onbeforeunload = function(e) {
+    var dialogText = 'Dialog text here';
+    e.returnValue = dialogText;
+    return dialogText;
+};
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
