@@ -3,16 +3,16 @@
 <div class="login-form">
     <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
-        <input type="hidden" name="next" value="{{ next }}">  <!-- 로그인 성공후 이동되는 URL -->
+        <input type="hidden" name="next" value="{{ next }}" autocomplete="off"> <!-- 로그인 성공후 이동되는 URL -->
         {% include "form_errors.html" %}
         <h2 class="text-center">로그인</h2>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="아이디" name="username" id="username"
-                   value="{{ form.username.value|default_if_none:'' }}">
+                   value="{{ form.username.value|default_if_none:'' }}" autocomplete="off">
         </div>
         <div class="form-group">
             <input type="password" class="form-control" placeholder="비밀번호" name="password" id="password"
-                   value="{{ form.password.value|default_if_none:'' }}">
+                   value="{{ form.password.value|default_if_none:'' }}" autocomplete="off">
         </div>
         <div class="form group">
             <button type="submit" class="btn btn-secondary btn-block">확인</button>

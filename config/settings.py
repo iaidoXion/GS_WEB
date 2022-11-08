@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'api',
     'rest_framework',
     'axes',
+    'sslserver',
 ]
 
 MIDDLEWARE = [
